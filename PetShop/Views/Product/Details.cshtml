@@ -9,6 +9,11 @@
         <h3><a href="#">@Model.Name</a></h3>
         <h4>@Model.ShortDescription</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu viverra tellus. Maecenas posuere, diam eget lacinia rhoncus, quam purus luctus mauris, in efficitur lectus tortor vel sem. Sed id volutpat ante, eu viverra libero. Aenean aliquet lacus nec sem consectetur, sit amet dignissim sapien lobortis. Cras pharetra lorem sit amet elit porttitor sollicitudin eu at ligula. Maecenas aliquet mi eget elit interdum, sed rutrum lectus convallis. Aliquam ornare lacus sit amet varius semper. Suspendisse aliquet, ex eget convallis tincidunt, ipsum nisi efficitur ligula, id semper erat est vitae orci. Donec et leo nec ex posuere convallis. Vivamus bibendum molestie nisi at maximus. Integer et nunc elementum, luctus tortor a, aliquam sem.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed placerat lacus, in facilisis lectus. Curabitur faucibus faucibus lacus id venenatis. Sed sodales tincidunt arcu. Curabitur venenatis, nulla vel commodo viverra, neque nunc sollicitudin ante, eget facilisis ipsum diam at eros. Ut placerat, libero sed consequat vulputate, felis purus hendrerit sapien, eget rutrum ex nisl nec enim. Fusce sed varius nisl, sit amet sodales nunc. Aliquam erat volutpat. Aenean mi orci, venenatis at luctus sed, lobortis et erat. Sed nec tortor eget sapien rhoncus aliquam. Suspendisse dignissim vel arcu nec elementum. Nulla condimentum tellus erat. Pellentesque quis est elit. Donec eget dictum metus.</p>
+        <div class="addToCart">
+            <p class="button">
+                <a class="btn btn-default" style="background-color: mediumseagreen !important; border-color: mediumseagreen !important" 
+                   asp-controller="ShoppingCart" asp-action="AddShoppingCart" asp-route-productId="@Model.ProductId">Add to cart</a>
+            </p>
+        </div>
     </div>
 </div>

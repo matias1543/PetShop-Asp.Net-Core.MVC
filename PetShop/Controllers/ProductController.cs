@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.Models;
 using PetShop.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PetShop.Controllers
 {
@@ -16,13 +18,13 @@ namespace PetShop.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult List()
-        {
-            ProductListViewModel productsListViewModel = new ProductListViewModel();
-            productsListViewModel.Products = _productRepository.AllProducts;
-            productsListViewModel.CurrentCategory = "Juguetes";
-            return View(productsListViewModel);
-        }
+        //public IActionResult List()
+        //{
+        //    ProductListViewModel productsListViewModel = new ProductListViewModel();
+        //    productsListViewModel.Products = _productRepository.AllProducts;
+        //    productsListViewModel.CurrentCategory = "Juguetes";
+        //    return View(productsListViewModel);
+        //}
 
         public IActionResult Details(int id)
         {
@@ -32,6 +34,29 @@ namespace PetShop.Controllers
                 return NotFound();
             }
             return View(product);
+        }
+
+        public ViewResult List(string category)
+        {
+            IEnumerable<Product> products;
+            string currentCategory;
+
+            if(string.IsNullOrEmpty(category))
+            {
+                products = _productRepository.AllProducts.OrderBy(p => p.ProductId);
+                currentCategory = "All products";
+            }
+            else
+            {
+                products = _productRepository.AllProducts.Where(p => p.Category.CategoryName == category).OrderBy(p => p.ProductId);
+                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            
+            }
+            return View(new ProductListViewModel
+            {
+                Products = products,
+                CurrentCategory = currentCategory
+            });
         }
     }
 }

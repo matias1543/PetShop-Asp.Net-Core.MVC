@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetShop.Models;
 using PetShop.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetShop.Controllers
 {
@@ -32,6 +29,28 @@ namespace PetShop.Controllers
             };
 
             return View(shoppingCartViewModel);
+        }
+
+        public RedirectToActionResult AddShoppingCart(int productId)
+        {
+            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => p.ProductId == productId);
+
+            if (selectedProduct != null)
+            {
+                _shoppingCart.AddToCart(selectedProduct, 1);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveFromShoppingCart(int productId)
+        {
+            var selectedProduct = _productRepository.AllProducts.FirstOrDefault(p => p.ProductId == productId);
+
+            if (selectedProduct != null)
+            {
+                _shoppingCart.RemoveFromCart(selectedProduct);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
