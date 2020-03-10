@@ -30,6 +30,7 @@ namespace PetShop
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             //When the user now comes to my syte, I'm going to create a scoped shopping cart using the GetCart.
             //The GetCart method is going to be invoked when the user sends a request. That gives me the ability to 
             //check if the cart ID is already in the session, if not, I pass it into this session and I return the ShoppingCart
